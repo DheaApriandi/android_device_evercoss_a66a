@@ -1,19 +1,19 @@
 ----Thanks for xen0n, who are contributing to the working CyanogenMod of MTK hardware.---
 
-This is a device tree for Xiaomi Redmi_1s_TD(HM2014011) which is based on MT6582 SoC. Powered by ferhung.
+This is a device tree for Evercoss A66A which is based on MT6582 SoC. Powered by ferhung.
 # Build
 
 * init
   Sync CyanogenMod source:
 
-        # repo init -u git://github.com/ferhung-mtk/android.git -b cm-13.0        
+        # repo init -u git://github.com/dheaapriandi/android.git -b cm-13.0        
         # repo sync
 
 * full build
         
         # source build/envsetup.sh
 
-        # brunch cm_HM2014011-userdebug
+        # brunch cm_A66A-userdebug
 
 # Limitations
 

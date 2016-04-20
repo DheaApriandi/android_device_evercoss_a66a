@@ -7,9 +7,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 # PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := --compiler-filter=interpret-only
 # $(call add-product-dex-preopt-module-config,services,--compiler-filter=space)
 
-$(call inherit-product-if-exists, vendor/Xiaomi/HM2014011/HM2014011-vendor.mk)
+$(call inherit-product-if-exists, vendor/Evercoss/A66A/A66A-vendor.mk)
 
-LOCAL_PATH := device/Xiaomi/HM2014011
+LOCAL_PATH := device/Evercoss/A66A
 
 PRODUCT_CHARACTERISTICS := default
 
@@ -154,8 +154,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
 	persist.service.debuggable=1 \
 	persist.mtk.wcn.combo.chipid=-1
 
-PRODUCT_NAME := full_HM2014011
-PRODUCT_DEVICE := HM2014011
+PRODUCT_NAME := full_A66A
+PRODUCT_DEVICE := A66A
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1280
