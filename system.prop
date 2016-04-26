@@ -1,5 +1,5 @@
 #
-# system.prop for A66A
+# system.prop for evercoss a66a
 #
 service.adb.root=1
 ro.sf.lcd_density=320

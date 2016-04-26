@@ -5,13 +5,15 @@ PRODUCT_RELEASE_NAME := A66A
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/Evercoss/A66A/device_A66A.mk)
+$(call inherit-product, device/evercoss/a66a/device_a66a.mk)
+
+# Boot animation
+TARGET_SCREEN_HEIGHT := 1280
+TARGET_SCREEN_WIDTH := 720
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := A66A
-PRODUCT_NAME := cm_A66A
-PRODUCT_BRAND := Evercoss
+PRODUCT_DEVICE := a66a
+PRODUCT_NAME := cm_a66a
+PRODUCT_BRAND := EVERCOSS
 PRODUCT_MODEL := A66A
-PRODUCT_MANUFACTURER := Evercoss
-
-##PRODUCT_BUILD_PROP_OVERRIDES += BUILD_FINGERPRINT=6.0/MRA58M/2280749:user/release-keys PRIVATE_BUILD_DESC="mt6582-user 6.0 MRA58M 2280749 release-keys"
+PRODUCT_MANUFACTURER := EVERCOSS

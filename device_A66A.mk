@@ -1,15 +1,8 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full.mk)
 
-# The gps config appropriate for this device
-# $(call inherit-product, device/common/gps/gps_us_supl.mk)
+$(call inherit-product-if-exists, vendor/evercoss/a66a/a66a-vendor.mk)
 
-# Enable dex-preoptimization, but we have both limited space in the system and data partitions.
-# PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := --compiler-filter=interpret-only
-# $(call add-product-dex-preopt-module-config,services,--compiler-filter=space)
-
-$(call inherit-product-if-exists, vendor/Evercoss/A66A/A66A-vendor.mk)
-
-LOCAL_PATH := device/Evercoss/A66A
+LOCAL_PATH := device/evercoss/a66a
 
 PRODUCT_CHARACTERISTICS := default
 
@@ -23,7 +16,9 @@ endif
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-PRODUCT_PACKAGES += Torch
+PRODUCT_PACKAGES += \
+	Torch \
+	FMRadio \
 
 PRODUCT_PACKAGES += \
     libxlog
@@ -33,6 +28,8 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    audio.primary.mt6582 \
+    audio_policy.default \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
@@ -62,8 +59,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/mtk-kpd.kl:system/usr/keylayout/mtk-kpd.kl
 
 # GSM
-#PRODUCT_PACKAGES += \
-#    gsm0710muxd
 PRODUCT_PACKAGES += libmt6582
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -74,17 +69,19 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/fstab.mt6582:root/fstab.mt6582 \
     $(LOCAL_PATH)/rootdir/init.recovery.mt6582.rc:recovery/root/init.recovery.mt6582.rc \
     $(LOCAL_PATH)/rootdir/init.mt6582.rc:root/init.mt6582.rc \
-    $(LOCAL_PATH)/rootdir/init.mt6582_common.rc:root/init.mt6582_common.rc \
     $(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
     $(LOCAL_PATH)/rootdir/ueventd.mt6582.rc:root/ueventd.mt6582.rc \
     $(LOCAL_PATH)/rootdir/init.mt6582.usb.rc:root/init.mt6582.usb.rc \
     $(LOCAL_PATH)/rootdir/enableswap.sh:root/enableswap.sh \
     $(LOCAL_PATH)/rootdir/factory_init.rc:root/factory_init.rc \
+    $(LOCAL_PATH)/rootdir/init.recovery.mt6582.rc:root/init.recovery.mt6582.rc \
     $(LOCAL_PATH)/rootdir/twrp.fstab:recovery/root/etc/twrp.fstab \
     $(LOCAL_KERNEL):kernel
 
 # Permissions
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/permissions/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
+    $(LOCAL_PATH)/configs/permissions/platform.xml:system/etc/permissions/platform.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -135,9 +132,8 @@ PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_COPY_FILES += \
+	$(LOCAL_PATH)/configs/media_codecs2.xml:system/etc/media_codecs2.xml \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-	$(LOCAL_PATH)/configs/platform.xml:system/etc/permissions/platform.xml \
-	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/permissions/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -154,12 +150,8 @@ PRODUCT_PROPERTY_OVERRIDES := \
 	persist.service.debuggable=1 \
 	persist.mtk.wcn.combo.chipid=-1
 
-PRODUCT_NAME := full_A66A
-PRODUCT_DEVICE := A66A
-
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+PRODUCT_NAME := full_a66a
+PRODUCT_DEVICE := a66a
 
 PRODUCT_PACKAGES += \
     librs_jni \

@@ -13,7 +13,7 @@ This is a device tree for Evercoss A66A which is based on MT6582 SoC. Powered by
         
         # source build/envsetup.sh
 
-        # brunch cm_A66A-userdebug
+        # brunch cm_a66a-userdebug
 
 # Limitations
 
