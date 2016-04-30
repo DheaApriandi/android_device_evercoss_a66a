@@ -38,10 +38,10 @@ MTK_HARDWARE := true
 BOARD_USES_LEGACY_MTK_AV_BLOB := true
 COMMON_GLOBAL_CFLAGS += -DMTK_HARDWARE -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 COMMON_GLOBAL_CPPFLAGS += -DMTK_HARDWARE
-# BLOCK_BASED_OTA := true
+BLOCK_BASED_OTA :=false
 
 # RIL
-BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril/
+BOARD_RIL_CLASS := ../../../device/evercoss/a66a/ril/
 
 BOARD_CONNECTIVITY_VENDOR := MediaTek
 BOARD_CONNECTIVITY_MODULE := conn_soc
@@ -72,33 +72,37 @@ TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/MTKbootimg.mk
 BOARD_CUSTOM_BOOTIMG := true
 
+# Recovery
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/virtual/android_usb/android0/f_mass_storage/lun%d/file"
+
 # TWRP
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/twrp.fstab
-# TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
-TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/kernel
+TW_THEME := portrait_hdpi
 DEVICE_RESOLUTION := 720x1280
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun%d/file
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
-TW_THEME := portrait_hdpi
-TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_BRIGHTNESS_PATH := /sys/devices/platform/leds-mt65xx/leds/lcd-backlight/brightness
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0/gadget/lun%d/file
 TW_MAX_BRIGHTNESS := 255
+TW_INTERNAL_STORAGE_PATH := "/sdcard"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p7"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+TW_EXCLUDE_SUPERSU := true
+TW_INCLUDE_FB2PNG := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
-TW_INTERNAL_STORAGE_PATH := "/sdcard1"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "Phone Storage"
-TW_EXTERNAL_STORAGE_PATH := "/sdcard0"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "Micro SDCard"
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
-
-# Sensors
-TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # Healthd & Charging
 HEALTHD_ENABLE_TRICOLOR_LED := true
@@ -145,3 +149,4 @@ POLICYVERS := 26
 
 # Hack for build
 $(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+
