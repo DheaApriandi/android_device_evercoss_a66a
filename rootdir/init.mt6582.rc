@@ -1,4 +1,4 @@
-import init.mt6592.usb.rc
+import init.mt6582.usb.rc
 import init.modem.rc
 # import init.project.rc
 
@@ -347,7 +347,6 @@ on post-fs-data
     chown system /sys/devices/platform/msensor/driver/cpsreptxy
     chown system /sys/devices/platform/msensor/driver/cpsreptz
 
-
     # SPM SODI Enable
     chown media /proc/mcdi/sodi_en
     chmod 0664 /proc/mcdi/sodi_en
@@ -424,12 +423,11 @@ on post-fs-data
     chmod 0660 /dev/kd_camera_hw
     chmod 0660 /dev/kd_camera_flashlight
     chmod 0660 /dev/kd_camera_hw_bus2
-    chmod 0660 /dev/FM50AF    
-    chmod 0660 /dev/DW9714AF
-    chmod 0660 /dev/DW9718AF
-    chmod 0660 /dev/BU6424AF    
     chmod 0660 /dev/CAM_CAL_DRV
     chmod 0660 /dev/EEPROM_M24C08F
+    chmod 0660 /dev/BU6424AF
+    chmod 0660 /dev/DW9714AF
+    chmod 0660 /dev/DW9718AF    
 
     chown system camera /dev/camera-sysram
     chown system camera /dev/camera-isp
@@ -437,13 +435,12 @@ on post-fs-data
     chown system camera /dev/kd_camera_hw
     chown system camera /dev/kd_camera_flashlight
     chown system camera /dev/kd_camera_hw_bus2
-    chown system camera /dev/FM50AF    
-    chown system camera /dev/DW9714AF
-    chown system camera /dev/DW9718AF
-    chown system camera /dev/BU6424AF    
     chown system camera /dev/CAM_CAL_DRV
     chown system camera /dev/EEPROM_M24C08F
-
+    chown system camera /dev/BU6424AF
+    chown system camera /dev/DW9714AF
+    chown system camera /dev/DW9718AF    
+    
     #MATV
     chmod 0660 /dev/MATV
     chown system media /dev/MATV
@@ -697,7 +694,6 @@ service audio-daemon /system/bin/audiocmdservice_atci
     disabled
     oneshot
 
-
 service insmod insmod
     disabled
     oneshot
@@ -744,7 +740,6 @@ service wpa_supplicant /system/bin/wpa_supplicant -dd \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
-
 
 service dhcpcd_bt-pan /system/bin/dhcpcd -A -BK -dd
     class main

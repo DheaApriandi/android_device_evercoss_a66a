@@ -3,4 +3,4 @@
 
 #define BTM_DEF_LOCAL_NAME   "Evercoss A66A"
 
-#endif 
+#endif

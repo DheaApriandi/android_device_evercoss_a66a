@@ -1,32 +1,30 @@
-----Thanks for xen0n, who are contributing to the working CyanogenMod of MTK hardware.---
+MTK
+===========================
+	# CyanogenMod 13.0 for mt6582 (Evercoss A66A)
 
-This is a device tree for Evercoss A66A which is based on MT6582 SoC. Powered by ferhung.
-# Build
+* Working
+  * RIL 
+  * Dual SIM 
+  * Audio
+  * Sensors
+  * Wifi
+  * MTP, ADB etc.
+  * Bluetooth
+  * Camera
 
-* init
-  Sync CyanogenMod source:
+* Not Working
+  * GPS
+  * FM-Radio
+ 
+* Sync CyanogenMod source:
 
         # repo init -u git://github.com/dheaapriandi/android.git -b cm-13.0        
         # repo sync
 
-* full build
-        
-        # source build/envsetup.sh
 
+* Compilation
+       
+        # source build/envsetup.sh    
         # brunch cm_a66a-userdebug
 
-# Limitations
 
-Services requires root:
-
-`system/core/rootdir/init.rc`
-
-  * surfaceflinger depends on sched_setscheduler calls, unable to change process priority from 'system' user (default user 'system')
-
-  * mediaserver depends on /data/nvram folder access, unable to do voice calls from 'media' user (default user 'media')
-
-# In China, we must skip to get 204 from Google server.
-  * Change of Android 5.1 source to skip network validation in some environment like China can't connect to http://clients3.google.com/generate_204. 
-
-  To see: 
-    [Skip_network_validation](http://github.com/ferhung/Skip_network_validation)
